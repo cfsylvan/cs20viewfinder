@@ -27,50 +27,56 @@ echo "<h1>Search Results</h1>";
 
 // sift through the results to search by genre/director
 $results = $data['Search'];
+$filteredResults = [];
 
-if ($genre != "" || $director != "") {
-    $filteredResults = [];
-    foreach ($results as $movie) {
-        // get each movie's IMDB code, query the api again to fetch movie details
-        $movieDetailsUrl = $baseUrl . "?apikey=$apiKey&i=" . $movie['imdbID'];
-        $movieDetailsResponse = file_get_contents($movieDetailsUrl);
-        $movieDetails = json_decode($movieDetailsResponse, true);
+foreach ($results as $movie) {
+    // get each movie's IMDB code, query the api again to fetch movie details
+    $movieDetailsUrl = $baseUrl . "?apikey=$apiKey&i=" . $movie['imdbID'];
+    $movieDetailsResponse = file_get_contents($movieDetailsUrl);
+    $movieDetails = json_decode($movieDetailsResponse, true);
 
-        //check to see if user input genre is in imdb
-        if ($genre == ""){
-            $matchesGenre = true;
-        } else {
-            $matchesGenre = false;
-            $genresFound = explode(",", $movieDetails['Genre']);
-            foreach ($genresFound as $item){
-                if (trim(strtolower($genre)) == trim(strtolower($item))){
-                    $matchesGenre = true;
-                    break;
+    //if a genre or director is inputted, use the movieDetails to see if each result matches the user's input
+    if ($genre != "" || $director != "") {
+            if ($genre == ""){
+                $matchesGenre = true;
+            } else {
+                $matchesGenre = false;
+                $genresFound = explode(",", $movieDetails['Genre']);
+                foreach ($genresFound as $item){
+                    if (trim(strtolower($genre)) == trim(strtolower($item))){
+                        $matchesGenre = true;
+                        break;
+                    }
                 }
             }
-        }
-        
-        //check to see if user input director is in imdb
-        if ($director == ""){
-            $matchesDirector = true;
-        } else {
-            $matchesDirector= false;
-            $directorFound = explode(" ", $movieDetails['Director']);
-            foreach ($directorFound as $item){
-                if (trim(strtolower($director)) == trim(strtolower($item))){
-                    $matchesDirector = true;
-                    break;
+            
+            //check to see if user input director is in imdb
+            if ($director == ""){
+                $matchesDirector = true;
+            } else {
+                $matchesDirector= false;
+                $directorFound = explode(" ", $movieDetails['Director']);
+                foreach ($directorFound as $item){
+                    if (trim(strtolower($director)) == trim(strtolower($item))){
+                        $matchesDirector = true;
+                        break;
+                    }
                 }
             }
-        }
-        
-        if ($matchesGenre && $matchesDirector) {
-            //add to filtered results array
+            
+            if ($matchesGenre && $matchesDirector) {
+                //add to filtered results array
+                $filteredResults[] = $movieDetails;
+            }
+        } 
+        else {
+            //if a user didn't input any criteria, automatically add the movie to the filtered results
             $filteredResults[] = $movieDetails;
-        }
-    }
-    $results = $filteredResults;
-}
+        } 
+    
+    
+} 
+$results = $filteredResults;
 
 //if there are no results, print an error. if there are results, print them
 if (empty($results)){
@@ -83,7 +89,8 @@ if (empty($results)){
         $imdbID = $movie['imdbID'];
         echo "<li><strong>$title</strong> ($year) -";
         //print a 'view details' page and put the imdb ID in the url so that details can be printed on a separate page
-        echo "<a href='movie_details.php?imdbID=". $imdbID. " target='_blank'>View Details</a> <img src='" . $movie['Poster'] . "'></li>";
+        echo "<img src='" . $movie['Poster'] . "'>";
+        echo $movie['Plot']. "</li>";
         }
         echo "</ul>";
 }
