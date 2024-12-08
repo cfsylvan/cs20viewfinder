@@ -104,10 +104,7 @@
         </form>
     <?php endif;?>
     <?php if ($logged_in){
-        echo "USERNAME: " . $_POST["username"];
-    }?>
-    <?php if ($logged_in){
-        include 'favorites.php';
+        include 'searchForm.php';
     }?>
 </body>
 </html>
