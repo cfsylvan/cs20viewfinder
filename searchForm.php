@@ -9,14 +9,9 @@
 <body>
     <div class="container">
         <header>
-            <h1>ViewFinder</h1>
             <div class="username-display">
                 <?php
-                    if (isset($_POST["username"]) && !empty($_POST["username"])) {
-                        echo "USERNAME: " . htmlspecialchars($_POST["username"]);
-                    } else {
-                        echo "No username provided.";
-                    }
+                    echo "USERNAME: ".$_SESSION["username"];
                 ?>
             </div>
         </header>
@@ -49,4 +44,3 @@
     </div>
 </body>
 </html>
-
