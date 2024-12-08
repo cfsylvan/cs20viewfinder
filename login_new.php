@@ -106,7 +106,7 @@
         echo "USERNAME: " . $_POST["username"];
     }?>
     <?php if ($logged_in){
-        include 'favorites.html';
+        include 'searchForm.html';
     }?>
 </body>
 </html>
