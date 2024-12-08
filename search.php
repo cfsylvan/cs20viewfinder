@@ -91,6 +91,7 @@ if (empty($results)){
         //print a 'view details' page and put the imdb ID in the url so that details can be printed on a separate page
         echo "<img src='" . $movie['Poster'] . "'>";
         echo $movie['Plot']. "</li>";
+        echo "<form action='addToFavourites.php' method='GET'> <input type='submit' name='addFavorites' value='Add to Favorites'>";
         }
         echo "</ul>";
 }
