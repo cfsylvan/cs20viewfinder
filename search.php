@@ -23,8 +23,6 @@ if ($year != "") {
 $response = file_get_contents($url);
 $data = json_decode($response, true);
 
-echo "<h1>Search Results</h1>";
-
 // sift through the results to search by genre/director
 $results = $data['Search'];
 $filteredResults = [];
@@ -78,6 +76,9 @@ foreach ($results as $movie) {
 } 
 $results = $filteredResults;
 
+//include the search form at the top of the page
+include "searchForm.html";
+echo "<h1>Search Results</h1>";
 //if there are no results, print an error. if there are results, print them
 if (empty($results)){
     echo "No results found. Please try again.";
