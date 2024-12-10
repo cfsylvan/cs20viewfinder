@@ -22,7 +22,7 @@
     }
 
     //check if movie is a duplicate favorite
-    $check_duplicate ="SELECT * FROM movies WHERE imdbID = '" . $imdbID . "' and username = '" . $username . "'";
+    $check_duplicate = 'SELECT * FROM movies WHERE imdbID = $imdbID and username = $username';
     $result = $conn->query($check_duplicate);
     //get result
     $row = $result->fetch_assoc();
