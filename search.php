@@ -90,7 +90,7 @@ if (empty($results)){
         $title = $movie['Title'];
         $year = $movie['Year'];
         $imdbID = $movie['imdbID'];
-        $poster = htmlspecialchars($movie['Poster']);
+        $poster = $movie['Poster'];
         $plot = htmlspecialchars($movie['Plot']);
         echo "<li><strong>$title</strong> ($year) -";
         //print a 'view details' page and put the imdb ID in the url so that details can be printed on a separate page
