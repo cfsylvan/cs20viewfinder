@@ -1,0 +1,122 @@
+/* Global Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+    color: #333;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+header {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 5px;
+}
+
+.username-display {
+    font-weight: bold;
+}
+
+h1, h2 {
+    color: #333;
+    text-align: center;
+}
+
+/* Search Form */
+form#searchForm {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin: 20px 0;
+}
+
+form#searchForm label {
+    display: block;
+    margin: 10px 0 5px;
+    font-weight: bold;
+}
+
+form#searchForm input[type="text"],
+form#searchForm button {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+form#searchForm button {
+    background-color: #4CAF50;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+form#searchForm button:hover {
+    background-color: #45a049;
+}
+
+/* Results Section */
+.results-section {
+    margin-top: 20px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.results-section ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.results-section li {
+    margin-bottom: 20px;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 10px;
+}
+
+.results-section img {
+    max-width: 100px;
+    margin-right: 10px;
+    vertical-align: middle;
+}
+
+.results-section strong {
+    font-size: 1.2em;
+}
+
+/* Error Messages */
+.error {
+    color: red;
+    font-weight: bold;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+
+    form#searchForm input[type="text"],
+    form#searchForm button {
+        width: 100%;
+    }
+
+    .results-section img {
+        max-width: 80px;
+    }
+}
