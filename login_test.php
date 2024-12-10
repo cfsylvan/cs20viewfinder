@@ -28,7 +28,7 @@
         $sql = "SELECT * FROM users WHERE username = '$username'";
         $result = $conn->query($sql);
         $row = $result->fetch_assoc();
-        
+       
         if ($new == "y"){
             //if they are a new user, check if their username is unique
             if ($row != null){
