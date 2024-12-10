@@ -1,3 +1,8 @@
+<?php 
+    session_start();
+    $username = $_SESSION['username'];
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,16 +16,16 @@
         <header>
             <div class="username-display">
                 <?php
-                    echo "USERNAME: ".$_SESSION["username"];
+                    echo "USERNAME: ". $username;
                 ?>
             </div>
         </header>
 
         <!-- Search Form -->
-        <form id="searchForm" action="search.php" method="GET">
+        <form id="searchForm" action="search.php" method="GET" onsubmit="return validateTitle()">
             <h2>Search for a Movie</h2>
-            <label for="title">Title:</label>
-            <input type="text" name="title" id="title" placeholder="Movie Title">
+            <label for="title">Title: (required) </label>
+            <input type="text" name="title" id="title" placeholder="Movie Title" required>
 
             <label for="genre">Genre:</label>
             <input type="text" name="genre" id="genre" placeholder="Genre">
@@ -34,6 +39,12 @@
             <button type="submit">Search</button>
         </form>
 
+        <!-- using another form so users can view favorites, setting action to a separate page that will display faves -->
+
+        <form id="viewFavorites" action="viewFavorites.php" method="GET">
+            <input type="submit" value="View Favorites">
+        </form>
+
         <!-- Results Section -->
         <div class="results-section">
             <h2>Results</h2>
@@ -41,6 +52,21 @@
                 <!-- Movie cards will be dynamically populated by `search.php` -->
             </div>
         </div>
+        <div id="shortTitle"></div>
     </div>
+
+    <!--check if title is too short -->
+    <script>
+        function validateTitle(){
+            let title = document.getElementById("title").value;
+            if (title.length < 3){
+                document.getElementById("shortTitle").innerHTML = "Please enter 3 or more characters in the title field.";
+                return false;
+            } else {
+                document.getElementById("shortTitle").innerHTML = "";
+                return true;
+            }
+        }
+    </script>
 </body>
 </html>
