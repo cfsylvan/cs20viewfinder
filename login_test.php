@@ -55,6 +55,7 @@
 <!doctype html>
 <html>
 <head>
+<link rel="stylesheet" href="style.css">
 <meta charset="utf-8">
 <title>Login Form</title>
 <style type="text/css">
@@ -80,8 +81,11 @@
 </head>
 <body>
 
+    <header>
+        <img src="logo.png" alt="Logo">
+        <h1>ViewFinder</h1>
+    </header>
 
-	<h1>ViewFinder</h1>
     
     <?php if ($not_unique):?>
         <p class='error'>This username is taken. Please try another.</p>

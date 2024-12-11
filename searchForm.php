@@ -14,6 +14,7 @@
 <body>
     <div class="container">
         <header>
+            <img src="logo.png" alt="Logo">
             <div class="username-display">
                 <?php
                     echo "USERNAME: ". $username;
@@ -22,7 +23,8 @@
         </header>
 
         <!-- Search Form -->
-        <form id="searchForm" action="search.php" method="GET" onsubmit="return validateTitle()">
+        <div class="search-form">
+            <form id="searchForm" action="search.php" method="GET" onsubmit="return validateTitle()">
             <h2>Search for a Movie</h2>
             <label for="title">Title: (required) </label>
             <input type="text" name="title" id="title" placeholder="Movie Title" required>
@@ -41,10 +43,12 @@
 
         <!-- using another form so users can view favorites, setting action to a separate page that will display faves -->
 
+        <div class="view-favorites-container">
         <form id="viewFavorites" action="viewFavorites.php" method="GET">
             <input type="submit" value="View Favorites">
         </form>
-
+    </div>
+</div>
         <!-- Results Section -->
         <div class="results-section">
             <h2>Results</h2>
